@@ -1,0 +1,35 @@
+group 'de.e2'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.1.2'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.github.jengelman.gradle.plugins:shadow:1.2.4"
+    }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'application'
+apply plugin: "com.github.johnrengelman.shadow"
+
+mainClassName = 'de.e2.updater.MainKt'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    compile "com.spotify:docker-client:8.4.0"
+    compile "com.sparkjava:spark-core:2.5.5"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4"
+    runtime "org.apache.logging.log4j:log4j-slf4j-impl:2.8.2"
+    runtime "org.apache.logging.log4j:log4j-core:2.8.2"
+}
