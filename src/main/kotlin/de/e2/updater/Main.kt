@@ -5,8 +5,9 @@ import com.spotify.docker.client.DefaultDockerClient
 import com.spotify.docker.client.DockerClient
 import com.spotify.docker.client.messages.swarm.*
 import spark.Filter
-import spark.Spark.before
+import spark.Spark.after
 import spark.Spark.get
+import spark.debug.DebugScreen.enableDebugScreen
 
 fun main(args: Array<String>) {
     var docker: DefaultDockerClient = DefaultDockerClient.fromEnv().build();
@@ -69,7 +70,13 @@ fun main(args: Array<String>) {
 
         val dockerService = DockerService(DefaultDockerClient.fromEnv().build());
 
-        before(Filter { _, response -> response.type("application/json") })
+        enableDebugScreen()
+
+        after(Filter { _, response ->
+            if (response.type() == null) {
+                response.type("application/json")
+            }
+        })
 
         get("/hello", { _, _ ->
             dockerService.findService("nginx");

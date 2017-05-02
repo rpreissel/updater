@@ -29,6 +29,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     compile "com.spotify:docker-client:8.4.0"
     compile "com.sparkjava:spark-core:2.5.5"
+    compile "com.sparkjava:spark-debug-tools:0.5"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.4"
     runtime "org.apache.logging.log4j:log4j-slf4j-impl:2.8.2"
     runtime "org.apache.logging.log4j:log4j-core:2.8.2"
